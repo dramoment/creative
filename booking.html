@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dejede Booking Otomatis</title>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS EXTERNAL -->
+    <link rel="stylesheet" href="style.css">
+	    <!-- FAVICON -->
+    <link rel="icon" href="./favicon/favicon.ico" sizes="any">
+    <!-- (opsional tapi direkomendasikan) -->
+    <link rel="icon" type="favicon/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="favicon/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="dejede-icon" href="./favicon/favicon-32x32.png">
+    <!-- Theme color (mobile browser) -->
+    <meta name="theme-color" content="#3e5241">
+</head>
+
+<body>
+
+<!-- NAVBAR- DEJEDE -->
+<nav class="navbar">
+    <a href="index.html" class="logo">DRAMOMENT</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+		<a href="booking.html" class="active">Booking</a>
+		<a href="invitation.html">Invitation</a>
+		<a href="generator.html" class="nav-highlight">Generator</a>
+		<a href="about.html">About</a>
+    </div>
+</nav>
+
+    <!-- PRICELIST -->
+    <div class="container">
+        <h1>Dejede Booking Otomatis</h1>
+
+
+        <!-- BOOKING -->
+        <div class="card booking-box">
+		
+<!-- ================= DATA KHUSUS WEDDING INVITATION ================= -->
+<div id="invitationForm" class="invitation-wrapper">
+
+    <h4 class="invitation-title">Data Wedding Invitation</h4>
+
+    <div class="invitation-grid">
+
+        <!-- KOLOM 1 -->
+        <div class="invitation-col">
+            <label>Nama Pengantin Pria</label>
+            <input type="text" id="groomName">
+
+            <label>Nama Orang Tua Pria</label>
+            <input type="text" id="groomParents">
+
+            <label>Alamat Mempelai Pria</label>
+            <input type="text" id="groomAddress">
+        </div>
+
+        <!-- KOLOM 2 -->
+        <div class="invitation-col">
+            <label>Nama Pengantin Wanita</label>
+            <input type="text" id="brideName">
+
+            <label>Nama Orang Tua Wanita</label>
+            <input type="text" id="brideParents">
+
+            <label>Alamat Mempelai Wanita</label>
+            <input type="text" id="brideAddress">
+        </div>
+
+    </div>
+
+    <!-- SECTION ACARA -->
+    <div class="invitation-event">
+        <label>Tanggal Acara</label>
+        <input type="date" id="eventDate">
+
+        <label>Alamat Acara</label>
+        <input type="text" id="eventAddress">
+
+        <label>Hiburan</label>
+        <input type="text" id="entertainment">
+    </div>
+
+</div>
+		
+            <h4 class="preview-title">Booking & Konfirmasi</h4>
+<label>Perkenalkan Namamu</label>
+<input type="text" id="clientName" placeholder="Nama lengkap/panggilan">
+
+            <label>Tanggal Booking</label>
+            <input type="date" id="bookingDate">
+
+            <label>Wilayah Acara</label>
+            <select id="area">
+                <option value="0">Dalam Daerah (lokal Free)</option>
+				<option value="50000">Kaliuling (+50K)</option>
+				<option value="50000">Iburaja (+50K)</option>
+				<option value="300000">Pucungsari (+300K)</option>
+                <option value="50000">Licin (+50K)</option>
+				<option value="100000">Lebakharjo (+100K)</option>
+				<option value="300000">Pronojiwo (+300K)</option>
+				<option value="300000">Ampelgading (+300K)</option>
+            </select>
+
+            <label>Durasi Acara Perhari</label>
+            <select id="days">
+                <option value="0">1 Hari (Free)</option>
+                <option value="200000">2 Hari (+200K)</option>
+            </select>
+<!-- TAMBAHKAN DI SINI -->
+<label>Pembayaran</label>
+
+<select id="dpOption">
+    <option value="100">Bayar Full (100%)</option>
+    <option value="30">DP 30%</option>
+    <option value="50">DP 50%</option>
+    <option value="custom">Custom Nominal</option>
+</select>
+
+<!-- Input custom di luar select -->
+<input type="text" 
+       id="customDP" 
+       placeholder="Masukkan nominal DP"
+       style="display:none; margin-top:8px;">
+
+<p id="remainingInfo" style="margin-top:8px; font-weight:600;"></p>
+
+
+
+</select>
+
+            <div class="summary-box">
+                <p><strong>Paket:</strong> <span id="sumPackage">-</span></p>
+                <p><strong>Tanggal:</strong> <span id="sumDate">-</span></p>
+                <p><strong>Wilayah:</strong> <span id="sumArea">-</span></p>
+                <p><strong>Durasi:</strong> <span id="sumDays">-</span></p>
+
+                <hr>
+
+                <p><strong>Total Paket:</strong> <span id="sumPackagePrice">Rp 0</span></p>
+                <p><strong>Total Tambahan:</strong> <span id="sumExtra">Rp 0</span></p>
+                <p class="grand-total">
+                    TOTAL BAYAR: <span id="sumTotal">Rp 0</span>
+                </p>
+            </div>
+
+<button class="btn btn-wa" id="sendWA">
+    <span class="wa-icon">
+        <svg viewBox="0 0 32 32" class="wa-svg">
+            <path d="M19.11 17.44c-.27-.14-1.59-.78-1.84-.87-.25-.09-.43-.14-.61.14-.18.27-.7.87-.86 1.05-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.33-1.57-1.49-1.84-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.48-.84-2.02-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29s.99 2.65 1.13 2.83c.14.18 1.95 2.98 4.73 4.18.66.28 1.18.45 1.58.58.66.21 1.26.18 1.74.11.53-.08 1.59-.65 1.82-1.27.23-.62.23-1.15.16-1.27-.07-.12-.25-.18-.52-.32z"/>
+            <path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.65.87 5.1 2.34 7.07L4 29l7.1-2.28a11.95 11.95 0 0 0 4.92 1.05c6.62 0 12.02-5.4 12.02-12.02C28.04 8.4 22.64 3 16.02 3zm0 21.84c-1.56 0-3.08-.42-4.4-1.22l-.32-.19-4.21 1.35 1.38-4.1-.21-.33a9.88 9.88 0 1 1 7.76 4.49z"/>
+        </svg>
+    </span>
+    Kirim Booking ke WhatsApp
+</button>
+
+        </div>
+    </div>
+
+<footer>
+    dramoment • wedding content & instant photo • digital invitation • 085236578999
+</footer>
+
+    <!-- SCRIPT -->
+<script>
+(function () {
+
+    const MIN_DP = 300000;
+
+    const clientName = document.getElementById("clientName");
+    const date = document.getElementById("bookingDate");
+    const area = document.getElementById("area");
+    const days = document.getElementById("days");
+    const dpOption = document.getElementById("dpOption");
+    const customDPInput = document.getElementById("customDP");
+    const remainingInfo = document.getElementById("remainingInfo");
+
+    const invitationForm = document.getElementById("invitationForm");
+
+    const sumPackage = document.getElementById("sumPackage");
+    const sumDate = document.getElementById("sumDate");
+    const sumArea = document.getElementById("sumArea");
+    const sumDays = document.getElementById("sumDays");
+
+    const sumPackagePrice = document.getElementById("sumPackagePrice");
+    const sumExtra = document.getElementById("sumExtra");
+    const sumTotal = document.getElementById("sumTotal");
+
+    function getCart() {
+        return JSON.parse(localStorage.getItem("dejedeCart")) || [];
+    }
+
+    function rupiah(num) {
+        return "Rp " + num.toLocaleString("id-ID");
+    }
+
+    function formatTanggalIndonesia(dateString) {
+        if (!dateString) return "-";
+
+        const hariList = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+        const bulanList = [
+            "Januari","Februari","Maret","April","Mei","Juni",
+            "Juli","Agustus","September","Oktober","November","Desember"
+        ];
+
+        const d = new Date(dateString);
+        return `${hariList[d.getDay()]}, ${d.getDate()} ${bulanList[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function hasProduct(cart, keyword) {
+        return cart.some(item =>
+            item.name.toLowerCase().includes(keyword.toLowerCase())
+        );
+    }
+
+    function updateSummary() {
+
+        const cart = getCart();
+        const cartLength = cart.length;
+
+        const isInvitation = hasProduct(cart, "digital wedding invitation");
+        const isContentCreator = hasProduct(cart, "wedding content creator");
+
+        /* ================= TAMPILKAN FORM INVITATION ================= */
+        if (isInvitation) {
+            invitationForm.style.display = "block";
+        } else {
+            invitationForm.style.display = "none";
+        }
+
+        const pkgTotal = cart.reduce((t, i) => t + i.price, 0);
+
+        /* ================= RULE AREA & DURASI ================= */
+        if (isInvitation && cartLength === 1) {
+            area.disabled = true;
+            days.disabled = true;
+            area.value = "0";
+            days.value = "0";
+        } else {
+            area.disabled = false;
+            days.disabled = false;
+        }
+
+        /* ================= RULE WAJIB FULL ================= */
+        if (
+            (isInvitation && cartLength === 1) ||
+            (isContentCreator && cartLength === 1)
+        ) {
+            dpOption.value = "100";
+            customDPInput.style.display = "none";
+            customDPInput.value = "";
+            dpOption.disabled = true;
+        } else {
+            dpOption.disabled = false;
+        }
+
+        const extraArea = parseInt(area.value || 0);
+        const extraDays = parseInt(days.value || 0);
+        const extraTotal = extraArea + extraDays;
+        const grandTotal = pkgTotal + extraTotal;
+
+        let dpAmount = 0;
+
+        if (dpOption.value === "custom") {
+            dpAmount = parseInt(customDPInput.value.replace(/\D/g, "") || 0);
+
+            if (dpAmount > 0 && dpAmount < MIN_DP) {
+                remainingInfo.innerHTML =
+                    `<span style="color:red;">Minimal DP ${rupiah(MIN_DP)}</span>`;
+            } else {
+                remainingInfo.innerHTML =
+                    `Sisa Pelunasan: <strong>${rupiah(grandTotal - dpAmount)}</strong>`;
+            }
+
+        } else {
+            const percent = parseInt(dpOption.value);
+            dpAmount = Math.round(grandTotal * percent / 100);
+            remainingInfo.innerHTML =
+                `Sisa Pelunasan: <strong>${rupiah(grandTotal - dpAmount)}</strong>`;
+        }
+
+        sumPackage.textContent = cartLength === 0
+            ? "Belum ada paket dipilih"
+            : cart.map(p => p.name).join(", ");
+
+        sumDate.textContent = formatTanggalIndonesia(date.value);
+        sumArea.textContent = area.options[area.selectedIndex].text;
+        sumDays.textContent = days.options[days.selectedIndex].text;
+
+        sumPackagePrice.textContent = rupiah(pkgTotal);
+        sumExtra.textContent = rupiah(extraTotal);
+        sumTotal.textContent = rupiah(dpAmount);
+    }
+
+    /* ================= EVENTS ================= */
+
+    customDPInput.addEventListener("input", function () {
+        this.value = this.value.replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        updateSummary();
+    });
+
+    dpOption.addEventListener("change", function () {
+        if (dpOption.value === "custom") {
+            customDPInput.style.display = "block";
+        } else {
+            customDPInput.style.display = "none";
+            customDPInput.value = "";
+        }
+        updateSummary();
+    });
+
+    area.addEventListener("change", updateSummary);
+    days.addEventListener("change", updateSummary);
+    date.addEventListener("change", updateSummary);
+
+    document.getElementById("sendWA").addEventListener("click", function () {
+
+        const cart = getCart();
+        const cartLength = cart.length;
+
+        const isInvitation = hasProduct(cart, "digital wedding invitation");
+        const isContentCreator = hasProduct(cart, "wedding content creator");
+
+        if (!clientName.value) {
+            alert("Silakan isi nama terlebih dahulu.");
+            return;
+        }
+
+        if (!date.value) {
+            alert("Silakan pilih tanggal booking.");
+            return;
+        }
+
+        if (cartLength === 0) {
+            alert("Keranjang masih kosong.");
+            return;
+        }
+
+        if (
+            ((isInvitation && cartLength === 1) ||
+             (isContentCreator && cartLength === 1)) &&
+            dpOption.value !== "100"
+        ) {
+            alert("Produk ini wajib pembayaran FULL (100%) jika dipesan sendiri.");
+            return;
+        }
+
+        /* ================= VALIDASI DATA INVITATION ================= */
+
+        let invitationData = "";
+
+        if (isInvitation) {
+
+            const groomName = document.getElementById("groomName").value;
+            const brideName = document.getElementById("brideName").value;
+            const groomParents = document.getElementById("groomParents").value;
+            const brideParents = document.getElementById("brideParents").value;
+            const groomAddress = document.getElementById("groomAddress").value;
+            const brideAddress = document.getElementById("brideAddress").value;
+            const eventDate = document.getElementById("eventDate").value;
+            const eventAddress = document.getElementById("eventAddress").value;
+            const entertainment = document.getElementById("entertainment").value;
+
+            if (!groomName || !brideName || !eventDate || !eventAddress) {
+                alert("Lengkapi data Wedding Invitation terlebih dahulu.");
+                return;
+            }
+
+            invitationData = `
+
+===== DATA WEDDING INVITATION =====
+Pengantin Pria: ${groomName}
+Pengantin Wanita: ${brideName}
+
+Orang Tua Pria: ${groomParents}
+Orang Tua Wanita: ${brideParents}
+
+Alamat Pria: ${groomAddress}
+Alamat Wanita: ${brideAddress}
+
+Tanggal Acara: ${formatTanggalIndonesia(eventDate)}
+Alamat Acara: ${eventAddress}
+Hiburan: ${entertainment}
+`;
+        }
+
+        const pkgTotal = cart.reduce((t, i) => t + i.price, 0);
+        const extraArea = parseInt(area.value || 0);
+        const extraDays = parseInt(days.value || 0);
+        const extraTotal = extraArea + extraDays;
+        const grandTotal = pkgTotal + extraTotal;
+
+        const dpAmount = dpOption.value === "custom"
+            ? parseInt(customDPInput.value.replace(/\D/g, "") || 0)
+            : Math.round(grandTotal * parseInt(dpOption.value) / 100);
+
+let message;
+
+if (isInvitation && cartLength === 1) {
+
+    // KHUSUS DIGITAL WEDDING INVITATION SAJA
+    message =
+`Halo DEJEDE
+
+Nama: ${clientName.value}
+
+Paket:
+${cart.map(p => "- " + p.name).join("\n")}
+
+JUMLAH BAYAR: ${rupiah(dpAmount)}
+${invitationData}
+
+Terima kasih`;
+
+} else {
+
+    // PRODUK LAIN ATAU COMBO
+    message =
+`Halo DEJEDE
+
+Nama: ${clientName.value}
+
+Paket:
+${cart.map(p => "- " + p.name).join("\n")}
+
+Tanggal Booking: ${formatTanggalIndonesia(date.value)}
+Wilayah: ${area.options[area.selectedIndex].text}
+Durasi: ${days.options[days.selectedIndex].text}
+
+Grand Total: ${rupiah(grandTotal)}
+Jumlah Bayar Sekarang: ${rupiah(dpAmount)}
+Sisa Pelunasan: ${rupiah(grandTotal - dpAmount)}
+${invitationData}
+
+Terima kasih`;
+}
+
+window.open(
+    "https://wa.me/6285236578999?text=" + encodeURIComponent(message),
+    "_blank"
+);
+
+localStorage.removeItem("dejedeCart");
+
+        window.open(
+            "https://wa.me/6285236578999?text=" + encodeURIComponent(message),
+            "_blank"
+        );
+
+        localStorage.removeItem("dejedeCart");
+    });
+
+    updateSummary();
+
+})();
+</script>
+
+</body>
+</html>

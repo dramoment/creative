@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Nama Tamu Wedding</title>
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS EXTERNAL -->
+    <link rel="stylesheet" href="style.css">
+	    <!-- FAVICON -->
+    <link rel="icon" href="./favicon/favicon.ico" sizes="any">
+    <!-- (opsional tapi direkomendasikan) -->
+    <link rel="icon" type="favicon/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="favicon/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="dejede-icon" href="./favicon/favicon-32x32.png">
+    <!-- Theme color (mobile browser) -->
+    <meta name="theme-color" content="#3e5241">
+</head>
+<body>
+
+<!-- NAVBAR- DEJEDE -->
+<nav class="navbar">
+    <a href="index.html" class="logo">DRAMOMENT</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+		<a href="booking.html">Booking</a>
+		<a href="invitation.html">Invitation</a>
+		<a href="generator.html" class="nav-highlight">Generator</a>
+		<a href="about.html">About</a>
+    </div>
+</nav>
+
+<div class="container">
+
+<!-- Generator Tamu Undangan -->
+<div class="container">
+<h1>Generator Undangan Tamu</h1>
+<div class="card booking-box">
+<label>Nama Tamu</label>
+<input type="text" id="guestName" placeholder="Contoh: Jannadi">
+
+<label>Alamat Tujuan</label>
+<input type="text" id="guestAddress" placeholder="Contoh: Jl. Kamteng No. 24">
+
+<label>Pilih Kata Pembuka</label>
+<select id="openingTemplate">
+    <option value="formal">Formal</option>
+    <option value="semi">Semi Formal</option>
+    <option value="islami">Islami</option>
+    <option value="friendly">Friendly</option>
+    <option value="exclusive">Exclusive VIP</option>
+</select>
+
+<button class="btn-cart-red" onclick="generateText()">Generate</button>
+
+<textarea id="resultText" rows="8" readonly></textarea>
+
+<button class="btn-cart-red" onclick="copyText()">Copy</button>
+<button class="btn-cart-red" onclick="sendWA()">Kirim ke WhatsApp</button>
+
+</div>
+</div>
+<footer>
+    dramoment • wedding content & instant photo • digital invitation • 085236578999
+</footer>
+<script>
+
+function generateText(){
+
+    const name = document.getElementById("guestName").value.trim();
+    const address = document.getElementById("guestAddress").value.trim();
+    const template = document.getElementById("openingTemplate").value;
+
+    if(!name){
+        alert("Masukkan nama tamu terlebih dahulu");
+        return;
+    }
+
+    let opening = "";
+
+    switch(template){
+
+        case "formal":
+            opening = `Dengan hormat,\nKami mengundang Bapak/Ibu/Saudara/i:`;
+            break;
+
+        case "semi":
+            opening = `Tanpa mengurangi rasa hormat,\nKami mengundang:`;
+            break;
+
+        case "islami":
+            opening = `Assalamu’alaikum Warahmatullahi Wabarakatuh,\nDengan penuh kebahagiaan kami mengundang:`;
+            break;
+
+        case "friendly":
+            opening = `Hai ${name}! 😊\nKami ingin berbagi momen bahagia bersama Anda:`;
+            break;
+
+        case "exclusive":
+            opening = `Kepada Yth.\n${name}\nUndangan Khusus & Terhormat`;
+            break;
+    }
+
+    const message =
+`${opening}
+
+Nama: ${name}
+Alamat: ${address}
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dalam acara pernikahan kami.
+
+Atas kehadiran dan doa restunya, kami ucapkan terima kasih.`;
+
+    document.getElementById("resultText").value = message;
+}
+
+function copyText(){
+    const textarea = document.getElementById("resultText");
+    textarea.select();
+    document.execCommand("copy");
+    alert("Teks berhasil disalin!");
+}
+
+function sendWA(){
+    const text = document.getElementById("resultText").value;
+
+    if(!text){
+        alert("Generate teks terlebih dahulu");
+        return;
+    }
+
+    window.open(
+        "https://wa.me/?text=" + encodeURIComponent(text),
+        "_blank"
+    );
+}
+
+</script>
+
+</body>
+</html>

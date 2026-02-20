@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Template Gallery PRO</title>
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS EXTERNAL -->
+    <link rel="stylesheet" href="style.css">
+	    <!-- FAVICON -->
+    <link rel="icon" href="./favicon/favicon.ico" sizes="any">
+    <!-- (opsional tapi direkomendasikan) -->
+    <link rel="icon" type="favicon/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="favicon/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="dejede-icon" href="./favicon/favicon-32x32.png">
+    <!-- Theme color (mobile browser) -->
+    <meta name="theme-color" content="#3e5241">
+</head>
+
+<body>
+
+<!-- NAVBAR- DEJEDE -->
+<nav class="navbar">
+    <a href="index.html" class="logo">DRAMOMENT</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+		<a href="booking.html">Booking</a>
+		<a href="invitation.html" class="active">Invitation</a>
+		<a href="generator.html" class="nav-highlight">Generator</a>
+		<a href="about.html">About</a>
+    </div>
+</nav>
+
+    <!-- PRICELIST -->
+    <div class="container">
+        <h1>Pilih Template Wedding Invitation</h1>
+
+<div class="filter">
+    <button onclick="filterTemplate('all')" class="active">Semua</button>
+    <button onclick="filterTemplate('elegant')">Elegant</button>
+    <button onclick="filterTemplate('modern')">Modern</button>
+    <button onclick="filterTemplate('islami')">Islami</button>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+<script>
+
+/* ================= TEMPLATE DATA (JSON STYLE) ================= */
+
+const templates = [
+{
+    name:"Elegant Gold",
+    category:"elegant",
+    primary:"#c9a227",
+    bg:"#fff8e5",
+    text:"#5a4b1c",
+    previewText:"Rizky & Alya"
+},
+{
+    name:"Minimal White",
+    category:"modern",
+    primary:"#222",
+    bg:"#ffffff",
+    text:"#333",
+    previewText:"Rizky & Alya"
+},
+{
+    name:"Modern Dark",
+    category:"modern",
+    primary:"#111",
+    bg:"#1c1c1c",
+    text:"#ffffff",
+    previewText:"Rizky & Alya"
+},
+{
+    name:"Floral Garden",
+    category:"elegant",
+    primary:"#b76e79",
+    bg:"#fff0f3",
+    text:"#7a3e48",
+    previewText:"Rizky & Alya"
+},
+{
+    name:"Islami Green",
+    category:"islami",
+    primary:"#0f5132",
+    bg:"#e9f5ec",
+    text:"#0f5132",
+    previewText:"Rizky & Alya"
+},
+{
+    name:"Luxury Marble",
+    category:"elegant",
+    primary:"#8b7355",
+    bg:"#f8f8f8",
+    text:"#333",
+    previewText:"Rizky & Alya"
+}
+];
+
+/* ================= RENDER ================= */
+
+const gallery = document.getElementById("gallery");
+
+function renderTemplates(filter="all"){
+    gallery.innerHTML="";
+    templates.forEach(template => {
+
+        if(filter !== "all" && template.category !== filter) return;
+
+        const card = document.createElement("div");
+        card.className="card";
+
+        card.innerHTML = `
+            <div class="preview" 
+                 style="background:${template.primary}">
+                 ${template.previewText}
+            </div>
+            <div class="card-body">
+                <h4>${template.name}</h4>
+                <button class="btn"
+                    onclick='selectTemplate(${JSON.stringify(template)})'>
+                    Gunakan Template
+                </button>
+            </div>
+        `;
+
+        gallery.appendChild(card);
+    });
+}
+
+renderTemplates();
+
+/* ================= FILTER ================= */
+
+function filterTemplate(category){
+    document.querySelectorAll(".filter button").forEach(btn=>{
+        btn.classList.remove("active");
+    });
+    event.target.classList.add("active");
+    renderTemplates(category);
+}
+
+/* ================= SELECT TEMPLATE ================= */
+
+function selectTemplate(template){
+
+    // Preview live theme change
+    document.documentElement.style.setProperty('--primary', template.primary);
+    document.body.style.background = template.bg;
+    document.body.style.color = template.text;
+
+    // Simpan ke localStorage
+    localStorage.setItem("selectedTemplate", JSON.stringify(template));
+
+    // Redirect dengan animasi delay
+    setTimeout(()=>{
+        window.location.href = "invitation.html";
+    }, 800);
+}
+
+</script>
+<footer>
+    dramoment • wedding content & instant photo • digital invitation • 085236578999
+</footer>
+</body>
+</html>
